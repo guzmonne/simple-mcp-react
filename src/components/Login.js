@@ -17,7 +17,7 @@ class Login extends React.Component {
 
 				<div className="row Login__social">
 					<div className="col-xs-12">
-						<p className="text-shadow">Inicie su sesión con su red social preferida.</p>
+						<p className="text-shadow">Inicie su sesión con su red social favorita.</p>
 						<SocialIcons />
 					</div>
 				</div>

@@ -3,7 +3,7 @@ import {Router as ReactRouter, Route, IndexRedirect, hashHistory} from 'react-ro
 import MainLayout from './components/MainLayout.js'
 import Login from './components/Login.js'
 import Signup from './components/Signup.js'
-import Welcome from './components/Welcome.js'
+import Welcome from './components/Welcome/'
 
 class AppRouter extends React.Component {
 	render() {
