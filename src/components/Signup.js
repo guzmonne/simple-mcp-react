@@ -49,7 +49,7 @@ class Signup extends React.Component {
 					<div className="col-xs-12">
 						<p className="text-shadow">Ingrese sus datos:</p>
 						<div className="row col-xs-12">
-							{!!error && <ErrorMessage error={errors[error.message]} onClick={this.closeError}/>}
+							{!!error && <ErrorMessage error={errors[error.message] || 'Oops, ocurrio un error.'} onClick={this.closeError}/>}
 						</div>
 						<SignupForm loading={loading} onSubmit={this.onSubmit}/>
 					</div>
