@@ -1,5 +1,4 @@
 import React, {PropTypes as T} from 'react'
-import {Link} from 'react-router'
 import ButtonLoading from './ButtonLoading.js'
 import ErrorMessage from './ErrorMessage.js'
 
@@ -145,11 +144,7 @@ class SignupForm extends React.Component {
           	{!loading && 
 	        		<button className="btn btn-red btn-block" type="submit">
 	          		Crear usuario
-	        		</button>}	
-          	{!loading && 
-	          	<Link to="login" className="btn btn-block btn-link">
-								Iniciar Sesión
-	          	</Link>}
+	        		</button>}
           </div>
 					
   			</div>

@@ -71,12 +71,47 @@ const ApiConstructor = () => {
 		  },
 			body: JSON.stringify(body),
 		})
-/**
- * Fetches the user information from the server
- * @param  {String} options.token   Token user credential
- * @param  {String} options.profile Social auth provider.
- * @return {Proomise}               The fetch promise.
- */
+	/**
+	 * Convert a camelized string into a lowercased one with a custom separator
+	 * Example: unicornRainbow → unicorn_rainbow
+	 * @param  {String} string    String to convert.
+	 * @param  {String} separator Separator.
+	 * @return {String}           Decamelized string.
+	 */
+	const decamelize = (string, separator) => {
+		if (typeof string !== 'string') {
+			throw new TypeError('Expected a string');
+		}
+		separator = typeof separator === 'undefined' ? '_' : separator;
+		return string
+			.replace(/([a-z\d])([A-Z])/g, '$1' + separator + '$2')
+			.replace(/([A-Z]+)([A-Z][a-z\d]+)/g, '$1' + separator + '$2')
+			.toLowerCase();
+	}
+	/**
+	 * Creates &amp; separated params string
+	 * @param params {object}
+	 */
+	const urlParams = (params) => Object.keys(params)
+		.reduce((result, key) => {
+			const decamelKey = decamelize(key)
+			const value      = params[key]
+			return params.hasOwnProperty(key) ? 
+				result.concat(`${decamelKey}=${value}`) : result
+		}, [])
+		.join('&')
+	/**
+	 * Creates url with params
+	 * @param url {string} url base
+	 * @param params {object} url params
+	 */
+	const urlBuilder = (url, params) => `${url}?${urlParams(params)}`
+	/**
+	 * Fetches the user information from the server
+	 * @param  {String} options.token   Token user credential
+	 * @param  {String} options.profile Social auth provider.
+	 * @return {Proomise}               The fetch promise.
+	 */
 	const getProfile = ({token, provider}) =>
 		fetchLambda(`${baseURL}/profile/${token}?provider=${provider}`)
 	/**
@@ -84,17 +119,35 @@ const ApiConstructor = () => {
 	 * @param  {Object} data New user data.
 	 * @return {Promise}     Lambda call promise.
 	 */
-	const signupUser = (data) => 
-		fetchJSONLambda(`${baseURL}/signup`, data)
+	const signupUser = (data, query) => 
+		fetchJSONLambda(urlBuilder(`${baseURL}/signup`, query), data)
+	/**
+	 * Calls the login Lambda function.
+	 * @param  {Object} data New user data.
+	 * @return {Promise}     Lambda call promise.
+	 */
+	const loginUser = (data, query) =>
+		fetchJSONLambda(urlBuilder(`${baseURL}/login`, query), data)
+	/**
+	 * Redirects the user to the providers login page.
+	 * @param  {String} provider Provider name.
+	 * @param  {Object} query    Querystring to store on the DB.
+	 * @return {Void}
+	 */
+	const socialLogin = (provider, query) =>
+		location.href = urlBuilder(`${baseURL}/signin/${provider}`, query)
 
 	//////////////////
 	
 	return Object.freeze({
 		getProfile,
 		signupUser,
+		loginUser,
 		fetchLambda,
 		fetchJSONLambda,
 		LambdaError,
+		urlBuilder,
+		socialLogin,
 	})
 }
 
