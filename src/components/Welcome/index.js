@@ -4,6 +4,7 @@ import ContinueRow from './ContinueRow.js'
 import ErrorRow from './ErrorRow.js'
 import LogoRow from './LogoRow.js'
 import ProfileRow from './ProfileRow.js'
+import Api from '../../modules/api.js'
 
 class Welcome extends React.Component {
 	constructor() {
@@ -11,17 +12,28 @@ class Welcome extends React.Component {
 		this.state = {
 			authorized: false,
 			error: false,
+			profile: {},
 		}
 	}
 
+	componentWillMount() {
+		const {location: {query: {token, provider}}} = this.props
+		Api.getProfile({token, provider})
+			.then(response => this.setState({
+				profile: response,
+				authorized: true,
+			}))
+			.catch(error => this.setState({error: true}))
+	}
+
 	render() {
-		const {error, authorized} = this.state
+		const {error, authorized, profile} = this.state
 		const {location: {query: {provider}}} = this.props
 		return (
 			<div className="Welcome">
 				{!error && !!authorized && <LogoRow />}
-				{!error && !!authorized && <ProfileRow />}
-				{!error && !!authorized && <ContinueRow />}
+				{!error && !!authorized && <ProfileRow profile={profile}/>}
+				{!error && !!authorized && <ContinueRow baseGrantUrl={profile.base_grant_url}/>}
 				{!error && !authorized && <AuthorizingRow provider={provider}/>}
 				{!!error && <ErrorRow />}
 			</div>

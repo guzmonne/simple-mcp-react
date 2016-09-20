@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes as T} from 'react'
 import {Link} from 'react-router'
 import ButtonLoading from './ButtonLoading.js'
 import ErrorMessage from './ErrorMessage.js'
@@ -17,7 +17,6 @@ class SignupForm extends React.Component {
 				gender: undefined,
 				age: undefined,
 			},
-			loading: false,
 			error: undefined,
 		}
 	}
@@ -34,7 +33,7 @@ class SignupForm extends React.Component {
 			this.setState({error: 'Todos los campos son obligatorios.'})
 			return
 		}
-		console.log(user)
+		this.props.onSubmit(user)
 	}
 
 	closeError() {
@@ -42,8 +41,8 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
-		const {loading, error, user: {name, email, password, gender, age}} = this.state
-
+		const {error, user: {name, email, password, gender, age}} = this.state
+		const {loading} = this.props
 		return (
 			<form className="Signup__Form" onSubmit={this.onSubmit}>
   			<div className="row clearfix">
@@ -143,18 +142,29 @@ class SignupForm extends React.Component {
 					
           <div className="col-xs-12">
           	{!!loading && <ButtonLoading />}
-          	<button className="btn btn-red btn-block" type="submit">
-          		Crear usuario
-        		</button>
-          	<Link to="login" className="btn btn-block btn-link">
-							Iniciar Sesión
-          	</Link>
+          	{!loading && 
+	        		<button className="btn btn-red btn-block" type="submit">
+	          		Crear usuario
+	        		</button>}	
+          	{!loading && 
+	          	<Link to="login" className="btn btn-block btn-link">
+								Iniciar Sesión
+	          	</Link>}
           </div>
 					
   			</div>
   		</form>
 		)
 	}
+}
+
+SignupForm.propTypes = {
+	onSubmit: T.func,
+	loading: T.bool,
+}
+
+SignupForm.defaultProps = {
+	onSubmit: () => {},
 }
 
 export default SignupForm

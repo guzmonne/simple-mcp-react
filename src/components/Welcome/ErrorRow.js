@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router'
 
 const ErrorRow = () => 
 	<div className="Error">
@@ -9,9 +10,9 @@ const ErrorRow = () =>
 		</div>
 		<div className="row">
 			<div className="col-xs-12">
-				<a href="http://www.tata.com.uy/" className="btn btn-danger">
-					Continuar hacia Internet
-				</a>
+				<Link to="/login" className="btn btn-danger">
+					Volver a inicio de sesión
+				</Link>
 			</div>
 		</div>
 	</div>
