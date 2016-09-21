@@ -1,4 +1,3 @@
-import './lib/font-awesome-4.6.3/css/font-awesome.css'
 import './lib/bootstrap-flatly/css/bootstrap.flatly.css'
 import './lib/iconmoon/icomoon.css'
 import './index.css'

@@ -1,6 +1,9 @@
 # Create React App
 settings.json
 
+# Build folder
+build/
+
 # Logs
 logs
 *.log
