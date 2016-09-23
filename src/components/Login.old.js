@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
-import SocialButtons from './SocialButtons.js'
+import SocialIcons from './SocialIcons.js'
 import LoginForm from './LoginForm.js'
 import ErrorMessage from './ErrorMessage.js'
 import logoSrc from "../_images/tata_logo_fill.png"
@@ -73,7 +73,7 @@ class Login extends React.Component {
 				<div className="row Login__social">
 					<div className="col-xs-12">
 						<p className="text-shadow">Inicie su sesión con su red social favorita.</p>
-						<SocialButtons onClick={this.onSocialLogin}/>
+						<SocialIcons onClick={this.onSocialLogin}/>
 					</div>
 				</div>
 
