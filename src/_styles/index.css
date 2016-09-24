@@ -51,6 +51,13 @@ select.input-lg {
 	height: 48px;
   line-height: 1.333333;
   padding: 10px 15px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0px;
+  outline: none;
+  box-shadow: none;
+  color: black;
+  cursor:default;
+  border-bottom: solid darkgrey 2px;
 }
 
 input[type=radio] {
@@ -59,7 +66,7 @@ input[type=radio] {
 
 .radio {
   text-align: left;
-  margin: 0 0 10px 50px;
+  margin: 0 0 20px 50px;
 }
 
 	.radio span:before {
@@ -79,7 +86,4 @@ input[type=radio] {
 
 .text-shadow {
 	text-shadow: 1px 0 0 #333, 0 -1px 0 #333, 0 1px 0 #333, -1px 0 0 #333;
-}
-
-input.input-lg[type="text"]{
 }

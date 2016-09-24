@@ -6,7 +6,7 @@ class SocialButtons extends React.Component {
 		this.onClick = this.onClick.bind(this)
 	}
 
-	onClick(e, provider) {
+	onClick(provider, e) {
 		e.preventDefault()
 		this.props.onClick(provider)
 	}
@@ -15,13 +15,13 @@ class SocialButtons extends React.Component {
 		return (
 			<div className="row">
 				<div className="col-xs-12 col-sm-6">
-			    <a className="btn btn-social btn-facebook">
+			    <a onClick={this.onClick.bind(this, 'facebook')}className="btn btn-social btn-facebook">
 		        <i className="icon icon-facebook"></i>
 		        Iniciar sesión con Facebook
 		      </a>
 				</div>
 				<div className="col-xs-12 col-sm-6">
-		      <a className="btn btn-social btn-google">
+		      <a onClick={this.onClick.bind(this, 'google')}className="btn btn-social btn-google">
 		        <i className="icon icon-google"></i>
 		        Iniciar sesión con Google
 		      </a>
