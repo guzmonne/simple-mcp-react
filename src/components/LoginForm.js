@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
 		return (
 			<form onSubmit={this.onSubmit} className="Login__form">
 			  <div className="row clearfix">
-			    <div className="col-xs-12 col-sm-6 col-md-6">
+			    <div className="col-xs-12 col-sm-6 col-sm-offset-3">
 						{!!error && <ErrorMessage onClick={this.closeError} error={error} />}
 			      <div className="form-group">
 			        <div className="control-label">
@@ -58,7 +58,7 @@ class LoginForm extends React.Component {
 			        </div>
 			      </div>
 			    </div>
-			    <div className="col-xs-12 col-sm-6 col-md-6">
+			    <div className="col-xs-12 col-sm-6 col-sm-offset-3">
 			      <div className="form-group">
 			        <div className="control-label">
 			          Contraseña
@@ -75,13 +75,13 @@ class LoginForm extends React.Component {
 			        </div>
 			      </div>
 			    </div>
-			    <div className="col-xs-12 col-sm-6 col-sm-offset-6 Login__forgot-password">
-			    	<Link to="/recover-password" className="text-red">
+			    <div className="col-xs-12 col-sm-6 col-sm-offset-3 Login__forgot-password">
+			    	<Link to="/recover-password">
 			    		¿Olvido su contraseña?
 		    		</Link>
 			    </div>
-			    <div className="col-xs-12">
-			    	{!loading && <button className="btn btn-red btn-block" type="submit">
+			    <div className="col-xs-12 col-sm-6 col-sm-offset-3">
+			    	{!loading && <button className="btn btn-dark-red btn-block" type="submit">
 			    		Iniciar Sesión
 		    		</button>}
 			    	{!!loading && <ButtonLoading />}

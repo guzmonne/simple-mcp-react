@@ -142,7 +142,7 @@ class SignupForm extends React.Component {
           <div className="col-xs-12">
           	{!!loading && <ButtonLoading />}
           	{!loading && 
-	        		<button className="btn btn-red btn-block" type="submit">
+	        		<button className="btn btn-dark-red btn-block" type="submit">
 	          		Crear usuario
 	        		</button>}
           </div>

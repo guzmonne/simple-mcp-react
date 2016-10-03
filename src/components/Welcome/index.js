@@ -2,7 +2,6 @@ import React from 'react'
 import AuthorizingRow from './AuthorizingRow.js'
 import ContinueRow from './ContinueRow.js'
 import ErrorRow from './ErrorRow.js'
-import LogoRow from './LogoRow.js'
 import ProfileRow from './ProfileRow.js'
 import Api from '../../modules/api.js'
 
@@ -31,7 +30,6 @@ class Welcome extends React.Component {
 		const {location: {query: {provider}}} = this.props
 		return (
 			<div className="Welcome">
-				{!error && !!authorized && <LogoRow />}
 				{!error && !!authorized && <ProfileRow profile={profile}/>}
 				{!error && !!authorized && <ContinueRow baseGrantUrl={profile.base_grant_url}/>}
 				{!error && !authorized && <AuthorizingRow provider={provider}/>}

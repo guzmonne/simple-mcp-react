@@ -48,3 +48,13 @@
 		margin-top: -10px;
 		margin-bottom: 10px;
 	}
+
+	/**
+	 * Estilos según pedido de TaTa
+	 */
+	.Login .Login__forgot-password a,
+	.Login a.btn-link {
+		color: white;
+		font-weight: normal;
+		text-decoration: underline
+	}

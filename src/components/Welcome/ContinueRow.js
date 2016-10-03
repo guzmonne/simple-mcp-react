@@ -4,7 +4,7 @@ const ContinueRow = ({baseGrantUrl}) =>
 	<div className="row Welcome_continue">
 		<div className="col-xs-12">
 			<a href={baseGrantUrl || 'http://www.tata.com.uy/'} 
-				className="btn btn-danger">
+				className="btn btn-dark-red">
 				Continuar hacia Internet
 			</a>
 		</div>

@@ -5,3 +5,13 @@
 	.Signup .Signup__form {
 		padding-top: 20px;
 	}
+ 
+	/**
+	 * Estilos según pedido de TaTa
+	 */
+	.Signup .Signup__form a,
+	.Signup a.btn-link {
+		color: white;
+		font-weight: normal;
+		text-decoration: underline
+	}

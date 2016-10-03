@@ -21,6 +21,15 @@ body {
 	background-color: #af080b;
 }
 
+.btn-dark-red {
+	color: #fff;
+	background-color: #980308;
+}
+
+.btn-dark-red:hover {
+	background-color: #EC1D25;
+}
+
 .btn-link {
 	color: #EC1D25;
 	font-weight: bold;
@@ -35,22 +44,25 @@ body {
  * Inputs
  */
 .input-lg {
-	border-radius: 0;
 	height: 48px;
 	padding: 15px 15px;
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 0px;
-  outline: none;
-  box-shadow: none;
-  color: black;
-  cursor:default;
-  border-bottom: solid darkgrey 2px;
+	/*
+		border-radius: 0;
+	  background-color: rgba(255, 255, 255, 0.8);
+	  border: 0px;
+	  outline: none;
+	  box-shadow: none;
+	  color: black;
+	  cursor:default;
+	  border-bottom: solid darkgrey 2px;
+	 */
 }
 
 select.input-lg {
 	height: 48px;
   line-height: 1.333333;
   padding: 10px 15px;
+  /*
   background-color: rgba(255, 255, 255, 0.8);
   border: 0px;
   outline: none;
@@ -58,6 +70,7 @@ select.input-lg {
   color: black;
   cursor:default;
   border-bottom: solid darkgrey 2px;
+   */
 }
 
 input[type=radio] {

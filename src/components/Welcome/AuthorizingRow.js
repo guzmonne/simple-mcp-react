@@ -4,7 +4,7 @@ import cn from 'classnames'
 const AuthorizingRow = ({provider}) => 
 	<div className="Authorizing">
 		<div className="Authorizing__inner">
-			<h3 className="text-shadow">Autorizando</h3>
+			<h3>Autorizando</h3>
 			<div className="loading-container">
 				<div className="loading"></div>
 				<div>

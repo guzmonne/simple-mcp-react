@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router'
 import SignupForm from './SignupForm.js'
 import ErrorMessage from './ErrorMessage.js'
-import logo from "../_images/tata_logo_fill.png"
 import Api from '../modules/api.js'
 
 const errors = {
@@ -57,17 +56,9 @@ class Signup extends React.Component {
 		const {error, loading} = this.state
 		return (
 			<div className="Signup text-center">
-				<div className="row Signup__logo">
-					<div className="col-xs-12">
-						<img src={logo}
-							className="img-responsive"
-							alt="TaTa Logo"/>
-					</div>
-				</div>
-
 				<div className="row Signup__form">
 					<div className="col-xs-12">
-						<p className="text-shadow">Ingrese sus datos:</p>
+						<p>Ingrese sus datos:</p>
 						<div className="row">
 							<div className="col-xs-12">
 								{!!error && <ErrorMessage error={errors[error.message] || 'Oops, ocurrio un error.'} onClick={this.closeError}/>}

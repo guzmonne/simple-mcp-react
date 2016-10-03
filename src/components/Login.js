@@ -3,7 +3,6 @@ import {Link} from 'react-router'
 import SocialButtons from './SocialButtons.js'
 import LoginForm from './LoginForm.js'
 import ErrorMessage from './ErrorMessage.js'
-import logoSrc from "../_images/tata_logo_fill.png"
 import Api from '../modules/api.js'
 
 const errors = []
@@ -62,24 +61,16 @@ class Login extends React.Component {
 		const {loading, error} = this.state
 		return (
 			<div className="Login text-center">
-				<div className="row Login__logo">
-					<div className="col-xs-12">
-						<img src={logoSrc}
-							className="img-responsive"
-							alt="TaTa Logo"/>
-					</div>
-				</div>
-
 				<div className="row Login__social">
 					<div className="col-xs-12">
-						<p className="text-shadow">Inicie su sesión con su red social favorita.</p>
+						<p>Inicie su sesión con su red social favorita.</p>
 						<SocialButtons onClick={this.onSocialLogin}/>
 					</div>
 				</div>
 
 				<div className="row Login__form">
 					<div className="col-xs-12">
-						<p className="text-shadow">... o ingrese sus datos:</p>
+						<p>... o ingrese sus datos:</p>
 						<div className="row col-xs-12">
 							{!!error && <ErrorMessage error={errors[error.message] || 'Oops, ocurrio un error.'} onClick={this.closeError}/>}
 						</div>

@@ -14,13 +14,13 @@ class SocialButtons extends React.Component {
 	render() {
 		return (
 			<div className="row">
-				<div className="col-xs-12 col-sm-6">
+				<div className="col-xs-12">
 			    <a onClick={this.onClick.bind(this, 'facebook')}className="btn btn-social btn-facebook">
 		        <i className="icon icon-facebook"></i>
 		        Iniciar sesión con Facebook
 		      </a>
 				</div>
-				<div className="col-xs-12 col-sm-6">
+				<div className="col-xs-12">
 		      <a onClick={this.onClick.bind(this, 'google')}className="btn btn-social btn-google">
 		        <i className="icon icon-google"></i>
 		        Iniciar sesión con Google
