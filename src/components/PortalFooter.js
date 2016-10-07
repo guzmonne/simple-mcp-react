@@ -3,6 +3,8 @@ import React, {PropTypes as T} from 'react'
 const PortalFooter = ({portal,}) => {
 	let domain;
 	switch(portal) {
+		case 'bas':
+			domain = 'bas'
 		case 'mhogar': 
 			domain = 'multiahorro'
 			break
