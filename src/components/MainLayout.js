@@ -6,7 +6,7 @@ import PortalFooter from './PortalFooter.js'
 
 class MainLayout extends React.Component {
 	render() {
-		const portal = get(this.props, 'location.query.portal', 'default')
+		const portal = get(this.props, 'location.query.portal', 'tata')
 		return (
 			<div className={cn('MainLayout', portal)}>
 				<div className="MainLayout__container">
