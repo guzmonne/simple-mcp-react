@@ -1,24 +1,19 @@
 import React from 'react'
-import WiFiAndTataLogo from './WiFiAndTataLogo.js'
+import cn from 'classnames'
+import get from 'lodash/get'
+import PortalLogo from './PortalLogo.js'
+import PortalFooter from './PortalFooter.js'
 
 class MainLayout extends React.Component {
 	render() {
-		const {children} = this.props
+		const portal = get(this.props, 'location.query.portal', 'default')
 		return (
-			<div className="outer">
-				<div className="MainLayout inner">
-					<div className="container">
-						<WiFiAndTataLogo className="MainLayout__logo" />
-						{children}
-					</div>
-					<footer>
-						<p>
-							<small>comprá desde tu casa</small>
-							<br/>
-							www.tata.com.uy
-						</p>
-					</footer>
+			<div className={cn('MainLayout', portal)}>
+				<div className="MainLayout__container">
+					<PortalLogo portal={portal} className="MainLayout__logo" />
+					{this.props.children}
 				</div>
+				<PortalFooter portal={portal} />
 			</div>
 		)
 	}

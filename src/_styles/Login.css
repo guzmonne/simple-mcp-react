@@ -1,9 +1,7 @@
 /**
  * Login
  */
-.Login {
-	color: white;
-}
+.Login {}
 
 	.Login .Login__form {
 		padding-top: 10px;
@@ -54,7 +52,6 @@
 	 */
 	.Login .Login__forgot-password a,
 	.Login a.btn-link {
-		color: white;
 		font-weight: normal;
 		text-decoration: underline
 	}

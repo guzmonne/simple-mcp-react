@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router'
+import get from 'lodash/get'
 import SocialButtons from './SocialButtons.js'
 import LoginForm from './LoginForm.js'
 import ErrorMessage from './ErrorMessage.js'
@@ -12,7 +13,6 @@ class Login extends React.Component {
 		super(props)
 		this.onSubmit = this.onSubmit.bind(this)
 		this.closeError = this.closeError.bind(this)
-		this.getQueryParamsFromProps = this.getQueryParamsFromProps.bind(this)
 		this.onSocialLogin = this.onSocialLogin.bind(this)
 		this.state = {
 			error: false,
@@ -20,37 +20,20 @@ class Login extends React.Component {
 		}
 	}
 
-	getQueryParamsFromProps() {
-		const {location: {
-			query: {
-				base_grant_url,
-				client_ip,
-				client_mac,
-				node_mac,
-			}
-		}} = this.props
-		return {
-			base_grant_url,
-			client_ip,
-			client_mac,
-			node_mac,
-		}
-	}
-
 	onSocialLogin(provider) {
-		const query = this.getQueryParamsFromProps()
+		const query = get(this.props, 'location.query')
 		Api.socialLogin(provider, query)
 	}
 
 	onSubmit(values) {
 		this.setState({loading: true})
-		const query = this.getQueryParamsFromProps()
+		const query = get(this.props, 'location.query')
 		Api.loginUser(values, query)
 			.then(response => location.href = response)
-			.catch(error => {console.error(error); this.setState({
+			.catch(error => this.setState({
 				loading: false,
 				error: error,
-			})})
+			}))
 	}
 
 	closeError(){
@@ -67,7 +50,6 @@ class Login extends React.Component {
 						<SocialButtons onClick={this.onSocialLogin}/>
 					</div>
 				</div>
-
 				<div className="row Login__form">
 					<div className="col-xs-12">
 						<p>... o ingrese sus datos:</p>
@@ -77,7 +59,7 @@ class Login extends React.Component {
 						<LoginForm loading={loading} onSubmit={this.onSubmit}/>
 			    	{!loading && <Link to={{
 			    		pathname: '/signup',
-			    		query: this.getQueryParamsFromProps(),
+			    		query: get(this.props, 'location.query'),
 			    	}} className="btn btn-block btn-link">
 							Nuevo usuario
 			    	</Link>}

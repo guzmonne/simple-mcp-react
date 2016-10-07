@@ -1,23 +1,21 @@
 /**
- * Body
- */
-
-.inner {
-	position: absolute;
-	height: 100%;
-	width: 100%;
-}
-
-/**
  * MainLayout
  */
 .MainLayout {
+	position: absolute;
+	height: 100%;
+	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
 	overflow: auto;
 	background-color: #fe0000;
+	color: white;
 	/* background-image: url(../_images/supermarket.jpg); */
 }
+
+	.MainLayout a {
+		color: white;
+	}
 
 	.MainLayout footer {
 		color: white;
@@ -28,13 +26,13 @@
 		margin-bottom: 0;
 	}
 
-	.MainLayout .container {
+	.MainLayout .MainLayout__container {
 		min-height: 100%;
 		margin-bottom: -50px;
 		padding-top: 10px;
 	}
 
-	.MainLayout .container:after {
+	.MainLayout .MainLayout__container:after {
 		content: "";
 		display: block;
 	}
@@ -42,6 +40,7 @@
 	.MainLayout img {
 		margin: 0 auto;
 		max-height: 200px;
+		max-width: 30%;
 	}
 
 	.MainLayout .MainLayout__logo {
@@ -51,12 +50,23 @@
 	.MainLayout .MainLayout__logo img {
 		display: inline-block;
 		vertical-align: middle;
-		max-width: 120px;
+		/* max-width: 120px; */
 		margin-bottom: 5px;
+		max-height: 70px;
 	}
 
 	.MainLayout .MainLayout__logo img:first-child {
-		max-width: 100px
+		max-width: 90px;
+		margin-right: 5px;
+	}
+
+	.MainLayout img.secondary-logo {
+		max-height: 40px;
+	}
+	
+	.MainLayout .MainLayout__logo img:last-child {
+		margin-left: 5px;
+		margin-right: 0;
 	}
 
 	@media (min-width: 768px) {
@@ -65,11 +75,16 @@
 		}
 
 		.MainLayout .MainLayout__logo img:first-child {
-			max-width: 200px
+			max-width: 160px
 		}
 	}
 
 	@media (min-height: 1023px) {
+		.MainLayout .MainLayout__logo img:first-child {
+			max-width: 140px;
+			margin-bottom: 100px;
+		}
+
 		.MainLayout .MainLayout__logo img {
 			max-width: 200px;
 			margin-bottom: 100px;
@@ -103,7 +118,7 @@
 	.MainLayout .btn-block,
 	.MainLayout .radio,
 	.MainLayout .form-control {
-		max-width: 300px;
+		max-width: 280px;
 		margin: 0 auto;
 	}
 
@@ -111,3 +126,54 @@
 		margin: 0 auto 10px auto;
 		width: 100px;
 	}
+
+/* Multiahorro Hogar */
+	.MainLayout.mhogar {
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9660e', endColorstr='#f08a02',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+		background: #e9660e; /* Old browsers */
+		background: radial-gradient(
+			70% 115%,
+			180% 70%,
+			#e9660e 0%,
+			#e85c0d 50%,
+			#f1920f 50%,
+			#f08a02 100% 
+		);
+		background-origin: 50% 0
+	}
+
+	.MainLayout.mhogar .btn-red,
+	.MainLayout.mhogar .btn-dark-red {
+		background-color: #d45509
+	}
+
+/* BAS */
+	.MainLayout.bas {
+		background-image: url(../_images/bas-background-pattern.png);
+		background-repeat: repeat;
+		background-size: 50px;
+		color: #001566;
+	}
+
+	.MainLayout.bas .btn-red,
+	.MainLayout.bas .btn-dark-red {
+		background-color: #001566
+	}
+
+	.MainLayout.bas .btn-link,
+	.MainLayout.bas a,
+	.MainLayout.bas h3,
+	.MainLayout.bas h4,
+	.MainLayout.bas footer {
+		color: #001566;
+	}
+
+	.MainLayout.bas .btn,
+	.MainLayout.bas .btn-social {
+		color: white;
+	}
+
+	.MainLayout.bas .loading {
+		border-color: transparent #001566 transparent #001566;
+	}
+
