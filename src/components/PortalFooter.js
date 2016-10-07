@@ -5,6 +5,7 @@ const PortalFooter = ({portal,}) => {
 	switch(portal) {
 		case 'bas':
 			domain = 'bas'
+			break;
 		case 'mhogar': 
 			domain = 'multiahorro'
 			break
