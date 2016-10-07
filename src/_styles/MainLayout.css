@@ -160,18 +160,20 @@
 		background-color: #001566
 	}
 
-	.MainLayout.bas .btn-link,
-	.MainLayout.bas a,
-	.MainLayout.bas h3,
-	.MainLayout.bas h4,
-	.MainLayout.bas footer {
-		color: #001566;
-	}
-
 	.MainLayout.bas .btn,
 	.MainLayout.bas .btn-social {
 		color: white;
 	}
+	
+	.MainLayout.bas .btn-link,
+	.MainLayout.bas a,
+	.MainLayout.bas h3,
+	.MainLayout.bas h4,
+	.MainLayout.bas .radio,
+	.MainLayout.bas footer {
+		color: #001566;
+	}
+
 
 	.MainLayout.bas .loading {
 		border-color: transparent #001566 transparent #001566;
