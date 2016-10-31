@@ -1,23 +1,12 @@
 import React, {PropTypes as T} from 'react'
+import conatelLogo from '../_images/conatel_logo.png'
 
-const PortalFooter = ({portal,}) => {
-	let domain;
-	switch(portal) {
-		case 'bas':
-			domain = 'bas'
-			break;
-		case 'mhogar': 
-			domain = 'multiahorro'
-			break
-		default: 
-			domain = 'tata'
-	}
+const PortalFooter = ({portal}) => {
 	return (
 		<footer>
 			<p>
-				<small>Comprá desde tu casa</small>
-				<br/>
-				{`www.${domain}.com.uy`}
+				{'Powered by: '}
+				<img src={conatelLogo} className="ConatelLogo" alt="conatel logo"/>
 			</p>
 		</footer>
 	)

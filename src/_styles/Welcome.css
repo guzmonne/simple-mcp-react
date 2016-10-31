@@ -1,6 +1,6 @@
 .Welcome {
 	text-align: center;
-	color: white;
+	color: rgb(67, 67, 67);;
 }
 	
 	.Welcome .Welcome__profile {
@@ -16,11 +16,11 @@
 	height: 100%;
 	width: 100%;
 	text-align: center;
-	color: white;
+	color: rgb(67, 67, 67);;
 }
 
 	.Authorizing .Authorizing__inner {
-		padding-top: 100px;
+		padding-top: 40px;
 		position: relative;
 	}
 
@@ -36,11 +36,19 @@
 
 .Error {
 	padding-top: 100px;
-	color: white;
+	color: rgb(67, 67, 67);;
 }
 
-#link {color: #E45635;display:block;font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;text-align:center; text-decoration: none;}
-#link:hover {color: #CCCCCC}
+#link {
+    color: #E45635;
+    display: block;
+    font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    text-decoration: none;
+}
+#link:hover {
+    color: rgb(67, 67, 67);
+}
 
 #link, #link:hover {-webkit-transition: color 0.5s ease-out;-moz-transition: color 0.5s ease-out;-ms-transition: color 0.5s ease-out;-o-transition: color 0.5s ease-out;transition: color 0.5s ease-out;}
 
@@ -125,7 +133,7 @@
 
 .loading {
     border: 2px solid transparent;
-    border-color: transparent #fff transparent #FFF;
+    border-color: transparent rgb(67, 67, 67) transparent rgb(67, 67, 67);
     -moz-animation: rotate-loading 1.5s linear 0s infinite normal;
     -moz-transform-origin: 50% 50%;
     -o-animation: rotate-loading 1.5s linear 0s infinite normal;
@@ -153,7 +161,7 @@
     -o-animation: loading-text-opacity 2s linear 0s infinite normal;
     -webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
     animation: loading-text-opacity 2s linear 0s infinite normal;
-    color: #ffffff;
+    color: rgb(67, 67, 67);;
     font-family: "Helvetica Neue, "Helvetica", ""arial";
     font-size: 10px;
     font-weight: bold;

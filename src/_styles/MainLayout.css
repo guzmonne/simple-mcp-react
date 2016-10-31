@@ -8,7 +8,7 @@
 	background-repeat: no-repeat;
 	background-size: cover;
 	overflow: auto;
-	color: white;
+	color: rgb(67, 67, 67);
 }
 
 	.MainLayout a {
@@ -16,7 +16,7 @@
 	}
 
 	.MainLayout footer {
-		color: white;
+		color: rgb(67, 67, 67);
 		text-align: center;
 	}
 
@@ -37,8 +37,7 @@
 
 	.MainLayout img {
 		margin: 0 auto;
-		max-height: 200px;
-		max-width: 30%;
+		max-width: 60%;
 	}
 
 	.MainLayout .MainLayout__logo {
@@ -48,45 +47,7 @@
 	.MainLayout .MainLayout__logo img {
 		display: inline-block;
 		vertical-align: middle;
-		/* max-width: 120px; */
 		margin-bottom: 5px;
-		max-height: 70px;
-	}
-
-	.MainLayout .MainLayout__logo img:first-child {
-		max-width: 90px;
-		margin-right: 5px;
-	}
-
-	.MainLayout img.secondary-logo {
-		max-height: 40px;
-	}
-	
-	.MainLayout .MainLayout__logo img:last-child {
-		margin-left: 5px;
-		margin-right: 0;
-	}
-
-	@media (min-width: 768px) {
-		.MainLayout .MainLayout__logo img {
-			max-width: 240px;
-		}
-
-		.MainLayout .MainLayout__logo img:first-child {
-			max-width: 160px
-		}
-	}
-
-	@media (min-height: 1023px) {
-		.MainLayout .MainLayout__logo img:first-child {
-			max-width: 140px;
-			margin-bottom: 100px;
-		}
-
-		.MainLayout .MainLayout__logo img {
-			max-width: 200px;
-			margin-bottom: 100px;
-		}
 	}
 
 	.MainLayout .btn-block,
@@ -106,51 +67,41 @@
 		width: 100px;
 	}
 
-/* Ta-Ta */
-	.MainLayout.tata {
-		background-color: #fe0000;
+	.MainLayout .ConatelLogo {
+		max-height: 30px;
+		margin-left: 5px;
+		margin-bottom: 20px;
 	}
 
-/* Multiahorro Hogar */
-	.MainLayout.mhogar {
-		background: #e9660e;
-		background: radial-gradient(bottom right,250% 40%,#e9660e 0%,#e85c0d 50%,#f1920f 50%,#f08a02 100%);
+/* Jobic */
+	.MainLayout.jobic {
+		background-color: rgb(250, 250, 250);
+		color: rgb(67, 67, 67);
 	}
 
-	.MainLayout.mhogar .btn-red,
-	.MainLayout.mhogar .btn-dark-red {
-		background-color: #d45509
+	.MainLayout.jobic .Logo {
+		font-family: 'Droid Sans';
+		line-height: 50px;
+    font-size: 48px;
+		font-weight: bold;
+		text-transform: uppercase;
 	}
 
-/* BAS */
-	.MainLayout.bas {
-		background-image: url(../_images/bas-background-pattern.png);
-		background-repeat: repeat;
-		background-size: 50px;
-		color: #001566;
+	.MainLayout.jobic .btn-red,
+	.MainLayout.jobic .btn-dark-red {
+		background-color: #00386b;
 	}
 
-	.MainLayout.bas .btn-red,
-	.MainLayout.bas .btn-dark-red {
-		background-color: #001566
-	}
-
-	.MainLayout.bas .btn,
-	.MainLayout.bas .btn-social {
+	.MainLayout.jobic .btn,
+	.MainLayout.jobic .btn-social {
 		color: white;
 	}
 
-	.MainLayout.bas .btn-link,
-	.MainLayout.bas a,
-	.MainLayout.bas h3,
-	.MainLayout.bas h4,
-	.MainLayout.bas .radio,
-	.MainLayout.bas footer {
-		color: #001566;
+	.MainLayout.jobic .btn-link,
+	.MainLayout.jobic a,
+	.MainLayout.jobic h3,
+	.MainLayout.jobic h4,
+	.MainLayout.jobic .radio,
+	.MainLayout.jobic footer {
+		color: rgb(67, 67, 67);
 	}
-
-
-	.MainLayout.bas .loading {
-		border-color: transparent #001566 transparent #001566;
-	}
-

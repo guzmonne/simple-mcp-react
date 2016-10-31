@@ -1,5 +1,4 @@
 import React, {PropTypes as T} from 'react'
-import {Link} from 'react-router'
 import ButtonLoading from './ButtonLoading.js'
 import ErrorMessage from './ErrorMessage.js'
 
@@ -74,11 +73,6 @@ class LoginForm extends React.Component {
 		          	/>
 			        </div>
 			      </div>
-			    </div>
-			    <div className="col-xs-12 col-sm-6 col-sm-offset-3 Login__forgot-password">
-			    	<Link to="/recover-password">
-			    		¿Olvido su contraseña?
-		    		</Link>
 			    </div>
 			    <div className="col-xs-12 col-sm-6 col-sm-offset-3">
 			    	{!loading && <button className="btn btn-dark-red btn-block" type="submit">

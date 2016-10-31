@@ -1,27 +1,19 @@
 import React, {PropTypes as T} from 'react'
-import WiFiAndLogo from './WiFiAndLogo.js'
-import tataLogo from '../_images/svg/tata-logo.svg'
-import basLogo from '../_images/svg/bas-logo.svg'
-import basTextLogo from '../_images/bas-logo-text.png'
-import mhogarLogo from '../_images/mhogar-logo.png'
-import wifiLogoBas from '../_images/wifi-logo-bas.png'
+import cn from 'classnames'
+import saltoGrandeLogo from '../_images/salto_grande_logo.png'
 
 const PortalLogo = ({portal, className}) => {
-	let portalLogo, secondaryLogo, wifiLogo;
-	console.log(portal)
-	switch(portal) {
-		case 'bas':
-			wifiLogo = wifiLogoBas
-			portalLogo = basTextLogo
-			secondaryLogo = basLogo
-			break
-		case 'mhogar': 
-			portalLogo = mhogarLogo
-			break
-		default: 
-			portalLogo = tataLogo
-	}
-	return <WiFiAndLogo className={className} wifiLogo={wifiLogo} logo={portalLogo} secondaryLogo={secondaryLogo}/>
+	return (
+		<div className={cn('row', className)}>
+			<div className="col-xs-12">
+				<h1 className="Logo">Jobic 2016</h1>
+				<img src={saltoGrandeLogo}
+					className="img-responsive"
+					alt="Wifi Logo"
+				/>
+			</div>
+		</div>
+	)
 }
 
 PortalLogo.propTypes = {
