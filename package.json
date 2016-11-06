@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
+    "aws-sdk": "^2.6.15",
     "npm-run-all": "^3.1.0",
     "react-scripts": "0.4.1"
   },
@@ -21,7 +22,17 @@
     "buildAndDeploy:s3": "npm-run-all build deploy:s3:*",
     "deploy:s3:static": "aws s3 cp ./build s3://jobic-uruman --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
     "deploy:s3:index": "aws s3 cp ./build/index.html s3://jobic-uruman --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",
-    "deploy:s3": "npm-run-all deploy:s3:*"
+    "deploy:s3": "npm-run-all deploy:s3:*",
+    "deploy:s3:jobic": "npm-run-all deploy:s3:jobic:*",
+    "deploy:s3:jobic:static": "aws s3 cp ./build s3://conatel-react-apps/simple-mcp-react-jobic --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
+    "deploy:s3:jobic:index": "aws s3 cp ./build/index.html s3://conatel-react-apps/simple-mcp-react-jobic/index.html --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",
+    "deploy:s3:uruman": "npm-run-all deploy:s3:uruman:*",
+    "deploy:s3:uruman:static": "aws s3 cp ./build s3://conatel-react-apps/simple-mcp-react-uruman --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
+    "deploy:s3:uruman:index": "aws s3 cp ./build/index.html s3://conatel-react-apps/simple-mcp-react-uruman/index.html --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",    
+    "deploy:s3:conatel": "npm-run-all deploy:s3:conatel:*",
+    "deploy:s3:conatel:static": "aws s3 cp ./build s3://conatel-react-apps/simple-mcp-react-conatel --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
+    "deploy:s3:conatel:index": "aws s3 cp ./build/index.html s3://conatel-react-apps/simple-mcp-react-conatel/index.html --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",
+    "deploy:s3:conference": "npm-run-all deploy:s3:jobic deploy:s3:conatel deploy:s3:uruman"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"

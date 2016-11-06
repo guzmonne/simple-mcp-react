@@ -1,9 +1,12 @@
 const ApiConstructor = () => {
-	let baseURL
+	let stage
 	if (process.env.NODE_ENV === 'production')
-		baseURL = 'https://074jfrmmw5.execute-api.us-east-1.amazonaws.com/prod/authentication'
+		stage = location.href.split('//')[1].split('.')[0]
 	else
-		baseURL = 'https://074jfrmmw5.execute-api.us-east-1.amazonaws.com/dev/authentication'
+		stage = 'jobic'
+
+	const baseURL = `https://8o1tf1uevg.execute-api.us-east-1.amazonaws.com/${stage}/authentication`
+
 	/**	
 	 * This was taken from Mozilla's Documentation.
 	 * Special error method to handle errors returning from Lambda

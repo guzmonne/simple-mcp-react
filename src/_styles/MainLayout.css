@@ -73,11 +73,71 @@
 		margin-bottom: 20px;
 	}
 
-/* Jobic */
-	.MainLayout.jobic {
-		background-color: rgb(250, 250, 250);
-		color: rgb(67, 67, 67);
+/* Conatel */
+.MainLayout.conatel {
+	background-color: #f9f9f9;
+}
+
+	.MainLayout.conatel .Logo {
+		font-weight: bold;
 	}
+
+	.MainLayout.conatel .MainLayout__logo img {
+		max-width: 90%;
+		width: 350px;
+		margin-left: 30px;
+	}
+
+	.MainLayout.conatel .btn,
+	.MainLayout.conatel .btn-social {
+		color: white;
+	}
+
+	.MainLayout.conatel .btn-link,
+	.MainLayout.conatel a,
+	.MainLayout.conatel h3,
+	.MainLayout.conatel h4 {
+		color: #ae132d;
+	}
+
+/* Uruman */
+.MainLayout.uruman {
+	background-color: white;
+	color: black;
+}
+
+	.MainLayout.uruman .MainLayout__logo img {
+		max-width: 90%;
+		width: 350px;
+	}
+
+	.MainLayout.uruman .btn-red,
+	.MainLayout.uruman .btn-dark-red {
+		background-color: black;
+		color: white;
+		border-radius: 0;
+		text-transform: uppercase;
+	}
+
+	.MainLayout.uruman .btn,
+	.MainLayout.uruman .btn-social {
+		color: white;
+	}
+
+	.MainLayout.uruman .btn-link,
+	.MainLayout.uruman a,
+	.MainLayout.uruman h3,
+	.MainLayout.uruman h4,
+	.MainLayout.uruman .radio,
+	.MainLayout.uruman footer {
+		color: black;
+	}
+
+/* Jobic */
+.MainLayout.jobic {
+	background-color: rgb(250, 250, 250);
+	color: rgb(67, 67, 67);
+}
 
 	.MainLayout.jobic .Logo {
 		font-family: 'Droid Sans';
