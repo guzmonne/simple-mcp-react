@@ -1,15 +1,27 @@
 .Welcome {
 	text-align: center;
-	color: rgb(67, 67, 67);;
+	color: rgb(67, 67, 67);
 }
-	
-	.Welcome .Welcome__profile {
-		padding-top: 40px;
-	}
 
 	.Welcome h4#profileName {
 		text-transform: capitalize;
 	}
+
+    .Welcome .Welcome__BeforeYouGo {
+        margin-bottom: 1em;
+    }
+
+    .Welcome .Welcome__BeforeYouGo input {
+        margin-top: 1em;
+    }
+
+    .Welcome h3 {
+        margin-top: 10px;
+    }
+
+    .Welcome_continue {
+        margin-bottom: 1em;    
+    }
 
 .Authorizing {
 	position: absolute;

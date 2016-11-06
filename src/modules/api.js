@@ -1,11 +1,15 @@
 const ApiConstructor = () => {
-	let stage
-	if (process.env.NODE_ENV === 'production')
+	let stage, apiGatewayId
+	if (process.env.NODE_ENV === 'production') {
 		stage = location.href.split('//')[1].split('.')[0]
-	else
-		stage = 'jobic'
+		apiGatewayId = '8o1tf1uevg'
+	} else {
+		stage = 'dev'
+		apiGatewayId = '074jfrmmw5'
+	}
+		
 
-	const baseURL = `https://8o1tf1uevg.execute-api.us-east-1.amazonaws.com/${stage}/authentication`
+	const baseURL = `https://${apiGatewayId}.execute-api.us-east-1.amazonaws.com/${stage}/authentication`
 
 	/**	
 	 * This was taken from Mozilla's Documentation.
@@ -118,6 +122,16 @@ const ApiConstructor = () => {
 	const getProfile = ({token, provider}) =>
 		fetchLambda(`${baseURL}/profile/${token}?provider=${provider}`)
 	/**
+	 * Updates the user profile.
+	 * @param  {Object} data           Keys and values to update the 
+	 *                                 profile. Some are mandatory.
+	 * @param  {String} data.email*    Profile HASH key.
+	 * @param  {String} data.provider* Profile RANGE key.
+	 * @return {Promise}               Lambda call promise.
+	 */
+	const updateProfile = (data) =>
+		fetchJSONLambda(`${baseURL}/profile`, data)
+	/**
 	 * Calls the signup Lambda function.
 	 * @param  {Object} data New user data.
 	 * @return {Promise}     Lambda call promise.
@@ -144,6 +158,7 @@ const ApiConstructor = () => {
 	
 	return Object.freeze({
 		getProfile,
+		updateProfile,
 		signupUser,
 		loginUser,
 		fetchLambda,

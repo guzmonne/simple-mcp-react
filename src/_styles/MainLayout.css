@@ -25,8 +25,7 @@
 	}
 
 	.MainLayout .MainLayout__container {
-		min-height: 100%;
-		margin-bottom: -50px;
+		min-height: calc(100% - 80px);
 		padding-top: 10px;
 	}
 

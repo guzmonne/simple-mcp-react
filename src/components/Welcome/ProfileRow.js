@@ -1,9 +1,9 @@
 import React, {PropTypes as T} from 'react'
 
-const ProfileRow = ({profile}) => 
+const ProfileRow = ({portal, profile}) => 
 	<div className="row Welcome__profile">
 		<div className="col-xs-12">
-			<h3>Bienvenido</h3>
+			<h3>{portal === 'conatel' ? '¡Hola!' : 'Bienvenido'}</h3>
 			<img 
 				src={profile.picture || 'https://openclipart.org/download/247319/abstract-user-flat-3.svg'}
 				alt="Profile"

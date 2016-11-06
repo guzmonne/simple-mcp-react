@@ -3,6 +3,7 @@ import AuthorizingRow from './AuthorizingRow.js'
 import ContinueRow from './ContinueRow.js'
 import ErrorRow from './ErrorRow.js'
 import ProfileRow from './ProfileRow.js'
+import BeforeYouGoRow from './BeforeYouGoRow.js'
 import Api from '../../modules/api.js'
 
 class Welcome extends React.Component {
@@ -12,6 +13,9 @@ class Welcome extends React.Component {
 			authorized: false,
 			error: false,
 			profile: {},
+			company: '',
+			companyEmail: '',
+			loading: false,
 		}
 	}
 
@@ -25,15 +29,33 @@ class Welcome extends React.Component {
 			.catch(error => this.setState({error: true}))
 	}
 
+	onChange = (key) => (e) => this.setState({[key]: e.target.value})
+
+	onSubmit = (e) => {
+		e.preventDefault()
+		this.setState({loading: true})
+		const {profile: {email}, company, companyEmail} = this.state
+		const {location: {query: {provider, base_grant_url}}} = this.props
+		Api.updateProfile({email, provider, company, companyEmail})
+		.then(response => location.href = base_grant_url)
+		.catch(console.error)
+	}
+
 	render() {
-		const {error, authorized, profile} = this.state
-		const {location: {query: {provider}}} = this.props
+		const {error, authorized, profile, company, companyEmail} = this.state
+		const {location: {query: {provider, portal}}} = this.props
 		return (
 			<div className="Welcome">
-				{!error && !!authorized && <ProfileRow profile={profile}/>}
-				{!error && !!authorized && <ContinueRow baseGrantUrl={profile.base_grant_url}/>}
-				{!error && !authorized && <AuthorizingRow provider={provider}/>}
-				{!!error && <ErrorRow />}
+			{!error && !!authorized && 
+				<ProfileRow profile={profile} portal={portal}/>}
+			{!error && !!authorized &&
+				<BeforeYouGoRow onChange={this.onChange} {...{portal, company, companyEmail}}/>}
+			{!error && !!authorized && 
+				<ContinueRow portal={portal} onClick={this.onSubmit}/>}
+			{!error && !authorized && 
+				<AuthorizingRow provider={provider}/>}
+			{!!error && 
+				<ErrorRow />}
 			</div>
 		)
 	}

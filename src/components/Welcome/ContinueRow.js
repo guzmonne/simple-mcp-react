@@ -1,17 +1,17 @@
 import React, {PropTypes as T} from 'react'
 
-const ContinueRow = ({baseGrantUrl}) => 
+const ContinueRow = ({onClick, portal}) => 
 	<div className="row Welcome_continue">
 		<div className="col-xs-12">
-			<a href={baseGrantUrl || 'http://www.tata.com.uy/'} 
+			<a href="#" onClick={onClick}
 				className="btn btn-dark-red">
-				Continuar hacia Internet
+			{portal === 'conatel' ? 'Finalizar inscripción' : 'Continuar hacia internet'}	
 			</a>
 		</div>
 	</div>
 
 ContinueRow.propTypes = {
-	baseGrantUrl: T.string,
+	onClick: T.func.isRequired,
 }
 
 export default ContinueRow
