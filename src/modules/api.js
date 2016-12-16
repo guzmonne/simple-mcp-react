@@ -3,7 +3,8 @@ const ApiConstructor = () => {
 	if (process.env.NODE_ENV === 'production')
 		baseURL = 'https://kvmveb8o06.execute-api.us-east-1.amazonaws.com/prod/authentication'
 	else
-		baseURL = 'https://kvmveb8o06.execute-api.us-east-1.amazonaws.com/dev/authentication'
+		//baseURL = 'https://kvmveb8o06.execute-api.us-east-1.amazonaws.com/dev/authentication'
+		baseURL = 'https://rakkqlrgrh.execute-api.us-east-1.amazonaws.com/dev/v1/auth'
 	/**	
 	 * This was taken from Mozilla's Documentation.
 	 * Special error method to handle errors returning from Lambda
@@ -50,7 +51,7 @@ const ApiConstructor = () => {
 	 * @return {Promise}        The fetch promise.
 	 */
 	const fetchLambda = (url, options) =>
-		fetch(url, options)
+		fetch(url, Object.assign({}, options, {credentials: 'include'}))
 			.then(parseJSON)
 			.then(checkError)
 	/**
@@ -70,6 +71,7 @@ const ApiConstructor = () => {
 		    'Content-Type': 'application/json'
 		  },
 			body: JSON.stringify(body),
+			credentials: 'include',
 		})
 	/**
 	 * Convert a camelized string into a lowercased one with a custom separator
@@ -112,8 +114,8 @@ const ApiConstructor = () => {
 	 * @param  {String} options.profile Social auth provider.
 	 * @return {Proomise}               The fetch promise.
 	 */
-	const getProfile = ({token, provider}) =>
-		fetchLambda(`${baseURL}/profile/${token}?provider=${provider}`)
+	const getProfile = () =>
+		fetchLambda(`${baseURL}/profile`)
 	/**
 	 * Calls the signup Lambda function.
 	 * @param  {Object} data New user data.
@@ -135,7 +137,7 @@ const ApiConstructor = () => {
 	 * @return {Void}
 	 */
 	const socialLogin = (provider, query) =>
-		location.href = urlBuilder(`${baseURL}/signin/${provider}`, query)
+		location.href = urlBuilder(`${baseURL}/${provider}`, query)
 
 	//////////////////
 	

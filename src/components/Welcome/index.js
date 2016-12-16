@@ -4,6 +4,7 @@ import ContinueRow from './ContinueRow.js'
 import ErrorRow from './ErrorRow.js'
 import ProfileRow from './ProfileRow.js'
 import Api from '../../modules/api.js'
+import get from 'lodash/get'
 
 class Welcome extends React.Component {
 	constructor() {
@@ -16,8 +17,10 @@ class Welcome extends React.Component {
 	}
 
 	componentWillMount() {
-		const {location: {query: {token, provider}}} = this.props
-		Api.getProfile({token, provider})
+		const sessionID = get(this.props, 'location.query.session_id')
+		if (sessionID)
+			document.cookie= 'sessionID = ' + sessionID
+		Api.getProfile()
 			.then(response => this.setState({
 				profile: response,
 				authorized: true,
