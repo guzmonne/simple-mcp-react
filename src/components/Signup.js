@@ -28,7 +28,7 @@ class Signup extends React.Component {
 		this.setState({loading: true})
 		const query = get(this.props, 'location.query')
 		Api.signupUser(data, query)
-			.then(response => location.href = response)
+			.then(({href}) => location.href = href)
 			.catch(error => this.setState({
 				error: error,
 				loading: false,

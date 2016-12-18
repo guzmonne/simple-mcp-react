@@ -29,7 +29,7 @@ class Login extends React.Component {
 		this.setState({loading: true})
 		const query = get(this.props, 'location.query')
 		Api.loginUser(values, query)
-			.then(response => location.href = response)
+			.then(({href}) => location.href = href)
 			.catch(error => this.setState({
 				loading: false,
 				error: error,

@@ -32,7 +32,7 @@ const ApiConstructor = () => {
 	 * @return {Object|LambdaError} The response object or an Error
 	 */
 	const checkError = (response) => {
-		if (!!response.errorMessage) 
+		if (!!response.errorMessage || !!response.error) 
 			throw new LambdaError(response)
 		else
 			return response
