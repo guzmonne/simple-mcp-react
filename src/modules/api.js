@@ -4,7 +4,7 @@ const ApiConstructor = () => {
 		baseURL = 'https://kvmveb8o06.execute-api.us-east-1.amazonaws.com/prod/authentication'
 	else
 		//baseURL = 'https://kvmveb8o06.execute-api.us-east-1.amazonaws.com/dev/authentication'
-		baseURL = 'https://rakkqlrgrh.execute-api.us-east-1.amazonaws.com/dev/v1/auth'
+		baseURL = 'https://u34nae5h40.execute-api.us-east-1.amazonaws.com/dev/v1/auth'
 	/**	
 	 * This was taken from Mozilla's Documentation.
 	 * Special error method to handle errors returning from Lambda
