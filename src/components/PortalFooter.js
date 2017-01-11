@@ -13,10 +13,8 @@ const PortalFooter = ({portal,}) => {
 			domain = 'tata'
 	}
 	return (
-		<footer>
+		<footer className="PortalFooter">
 			<p>
-				<small>Comprá desde tu casa</small>
-				<br/>
 				{`www.${domain}.com.uy`}
 			</p>
 		</footer>

@@ -1,19 +1,16 @@
 import React, {PropTypes as T} from 'react'
 import WiFiAndLogo from './WiFiAndLogo.js'
-import tataLogo from '../_images/svg/tata-logo.svg'
-import basLogo from '../_images/svg/bas-logo.svg'
-import basTextLogo from '../_images/bas-logo-text.png'
+import wifiLogoDefault from '../_images/wifi-logo.png'
+import tataLogo from '../_images/tata-logo.png'
+import basLogo from '../_images/bas-logo.png'
 import mhogarLogo from '../_images/mhogar-logo.png'
-import wifiLogoBas from '../_images/wifi-logo-bas.png'
 
 const PortalLogo = ({portal, className}) => {
-	let portalLogo, secondaryLogo, wifiLogo;
-	console.log(portal)
+	let portalLogo, secondaryLogo, wifiLogo = wifiLogoDefault;
 	switch(portal) {
 		case 'bas':
-			wifiLogo = wifiLogoBas
-			portalLogo = basTextLogo
-			secondaryLogo = basLogo
+			wifiLogo = null
+			portalLogo = basLogo
 			break
 		case 'mhogar': 
 			portalLogo = mhogarLogo

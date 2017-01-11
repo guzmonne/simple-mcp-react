@@ -1,17 +1,17 @@
 import React, {PropTypes as T} from 'react'
 import cn from 'classnames'
-import wifiLogoDefault from '../_images/wifi-logo.png'
 
 class WiFiAndLogo extends React.Component {
 	render() {
 		const {className, wifiLogo, secondaryLogo, logo} = this.props
 		return (
-			<div className={cn('row', className)}>
+			<div className={cn('WiFiAndLogo row', className)}>
 				<div className="col-xs-12">
-					<img src={wifiLogo || wifiLogoDefault}
+				{wifiLogo &&	
+					<img src={wifiLogo}
 						className="img-responsive"
 						alt="Wifi Logo"
-					/>
+				/>}
 				{secondaryLogo && 
 					<img src={secondaryLogo}
 						className="img-responsive secondary-logo"

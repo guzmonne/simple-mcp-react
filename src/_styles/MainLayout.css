@@ -37,8 +37,8 @@
 
 	.MainLayout img {
 		margin: 0 auto;
-		max-height: 200px;
-		max-width: 30%;
+		max-height: 70px;
+		float: none;
 	}
 
 	.MainLayout .MainLayout__logo {
@@ -50,11 +50,10 @@
 		vertical-align: middle;
 		/* max-width: 120px; */
 		margin-bottom: 5px;
-		max-height: 70px;
+		min-height: 50px;
 	}
 
 	.MainLayout .MainLayout__logo img:first-child {
-		max-width: 90px;
 		margin-right: 5px;
 	}
 
@@ -67,27 +66,7 @@
 		margin-right: 0;
 	}
 
-	@media (min-width: 768px) {
-		.MainLayout .MainLayout__logo img {
-			max-width: 240px;
-		}
 
-		.MainLayout .MainLayout__logo img:first-child {
-			max-width: 160px
-		}
-	}
-
-	@media (min-height: 1023px) {
-		.MainLayout .MainLayout__logo img:first-child {
-			max-width: 140px;
-			margin-bottom: 100px;
-		}
-
-		.MainLayout .MainLayout__logo img {
-			max-width: 200px;
-			margin-bottom: 100px;
-		}
-	}
 
 	.MainLayout .btn-block,
 	.MainLayout .radio,
@@ -142,6 +121,7 @@
 
 	.MainLayout.bas .btn-link,
 	.MainLayout.bas a,
+	.MainLayout.bas p,
 	.MainLayout.bas h3,
 	.MainLayout.bas h4,
 	.MainLayout.bas .radio,

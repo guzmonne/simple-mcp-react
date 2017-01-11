@@ -1,7 +1,6 @@
 /**
  * Login
  */
-.Login {}
 
 	.Login .Login__form {
 		padding-top: 10px;
@@ -17,7 +16,6 @@
 
 		.Login .Login__social .icon-container {
 			margin: 0 auto;
-			float: none;
 			display: inline-block;
 			margin-left: 15px;
 		}
