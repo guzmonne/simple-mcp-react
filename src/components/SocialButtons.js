@@ -16,7 +16,7 @@ class SocialButtons extends React.Component {
 
 	render() {
 		return (
-			<div className="col-xs-12">
+			<div className="SocialButtons col-xs-12">
 			{this.state.provider === 'facebook' ? 
 				<a href="#" onClick={e => e.preventDefault()} className="btn btn-social btn-facebook">
 					<i className="icon icon-facebook"></i>

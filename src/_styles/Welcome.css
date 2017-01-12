@@ -12,15 +12,15 @@
 	}
 
 .Authorizing {
-	position: absolute;
-	height: 100%;
-	width: 100%;
+    min-height: 230px;
+    height: 50vh;
 	text-align: center;
 	color: white;
+    display: flex;
+    align-items: center;
 }
 
 	.Authorizing .Authorizing__inner {
-		padding-top: 100px;
 		position: relative;
 	}
 

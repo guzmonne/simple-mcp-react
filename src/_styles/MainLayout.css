@@ -2,33 +2,41 @@
  * MainLayout
  */
 .MainLayout {
-	position: absolute;
-	height: 100%;
+	height: 100vh;
 	width: 100%;
 	background-repeat: no-repeat;
 	background-size: cover;
 	overflow: auto;
 	color: white;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }
 
 	.MainLayout a {
 		color: white;
 	}
 
+	.MainLayout .MainLayout__container {
+		width: 100%;
+		padding-top: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
 	.MainLayout footer {
 		color: white;
 		text-align: center;
+		align-self: flex-end;
 	}
 
 	.MainLayout footer p {
 		margin-bottom: 0;
 	}
 
-	.MainLayout .MainLayout__container {
-		min-height: 100%;
-		margin-bottom: -50px;
-		padding-top: 10px;
-	}
 
 	.MainLayout .MainLayout__container:after {
 		content: "";
