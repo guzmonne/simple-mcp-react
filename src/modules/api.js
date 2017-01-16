@@ -1,10 +1,12 @@
 const ApiConstructor = () => {
 	let baseURL
+
 	if (process.env.NODE_ENV === 'production')
 		baseURL = 'https://u34nae5h40.execute-api.us-east-1.amazonaws.com/dev/v1/auth'
 	else
 		baseURL = 'https://rnwkmfax27.execute-api.us-east-1.amazonaws.com/development/v1/auth'
-		//baseURL = 'http://api.conapps.local.com:3001/v1/auth'
+	if (process.env.REACT_APP_LOCAL_API)
+		baseURL = 'http://api.conapps.local.com:3001/v1/auth'
 	/**	
 	 * This was taken from Mozilla's Documentation.
 	 * Special error method to handle errors returning from Lambda
