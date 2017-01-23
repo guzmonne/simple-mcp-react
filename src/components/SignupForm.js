@@ -15,7 +15,7 @@ class SignupForm extends React.Component {
 				name: '',
 				email: '',
 				password: '',
-				document: undefined,
+				document: '',
 				gender: undefined,
 				age: undefined,
 			},
@@ -37,12 +37,13 @@ class SignupForm extends React.Component {
 
 	onDocumentChange(e) {
 		const {user} = this.state		
-		const doc = parseInt(e.target.value.replace(/\D+/g, ''), 10)
-		console.log(doc, formatMoney(doc, 0))
+		let doc = e.target.value.replace(/\D+/g, '')
+		if (doc.length > 7) return
+		if (window.isNaN(doc)) doc = ''
 		this.setState({
 			user: {
 				...user,
-				document: formatMoney(doc, 0)
+				document: doc,
 			},
 		})
 	}
@@ -122,7 +123,7 @@ class SignupForm extends React.Component {
   								type="text"
   								name="document"
   								placeholder="Documento de identidad"
-  								value={doc}
+									value={formatMoney(doc)}
   								onChange={this.onDocumentChange}
   								className="form-control input-lg"
 								/>
