@@ -118,6 +118,12 @@ const ApiConstructor = () => {
 	 */
 	const getProfile = () =>
 		fetchLambda(`${baseURL}/profile`)
+
+	const updateProfileDocument = (document) => (
+		fetchJSONLambda(`${baseURL}/profile/document`, {document}, {
+			method: 'PUT',
+		})
+	)
 	/**
 	 * Calls the signup Lambda function.
 	 * @param  {Object} data New user data.
@@ -152,6 +158,7 @@ const ApiConstructor = () => {
 		LambdaError,
 		urlBuilder,
 		socialLogin,
+		updateProfileDocument,
 	})
 }
 
