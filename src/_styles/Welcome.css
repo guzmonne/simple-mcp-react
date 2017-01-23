@@ -11,6 +11,10 @@
 		text-transform: capitalize;
 	}
 
+.Welcome .Welcome__document_input {
+    padding: 2em 0;
+}
+
 .Authorizing {
     min-height: 230px;
     height: 50vh;

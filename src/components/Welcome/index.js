@@ -9,10 +9,15 @@ import get from 'lodash/get'
 class Welcome extends React.Component {
 	constructor() {
 		super()
+
+		this.onChange = this.onChange.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
+
 		this.state = {
 			authorized: false,
 			error: false,
 			profile: {},
+			document: '',
 		}
 	}
 
@@ -25,16 +30,36 @@ class Welcome extends React.Component {
 				profile: response,
 				authorized: true,
 			}))
-			.catch(error => this.setState({error: true}))
+			.catch(error => this.setState({error: error}))
+	}
+
+	onSubmit (e) {
+		e.preventDefault()
+		const {profile, document:doc} = this.state
+		if (doc === '') {
+			return location.href = profile.base_grant_url || 'http://www.tata.com.uy'
+		}
+		Api.updateProfileDocument(this.state.document)
+			 .then(console.log)
+			 .catch(console.error)
+	}
+
+	onChange (e) {
+		let doc = e.target.value.replace(/\D+/g, '')
+		if (doc.length > 7) return
+		if (window.isNaN(doc)) doc = ''
+		this.setState({
+			document: doc,
+		})
 	}
 
 	render() {
-		const {error, authorized, profile} = this.state
+		const {error, authorized, profile, document:doc} = this.state
 		const {location: {query: {provider}}} = this.props
 		return (
 			<div className="Welcome">
-				{!error && !!authorized && <ProfileRow profile={profile}/>}
-				{!error && !!authorized && <ContinueRow baseGrantUrl={profile.base_grant_url}/>}
+				{!error && !!authorized && <ProfileRow profile={profile} doc={doc} onChange={this.onChange} showInput={!profile.Document}/>}
+				{!error && !!authorized && <ContinueRow baseGrantUrl={profile.base_grant_url} onSubmit={this.onSubmit}/>}
 				{!error && !authorized && <AuthorizingRow provider={provider}/>}
 				{!!error && <ErrorRow />}
 			</div>
