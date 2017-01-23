@@ -61,7 +61,7 @@ class Login extends React.Component {
 				<p>... o ingrese sus datos:</p>
 				{!!error && 
 					<div className="row col-xs-12">
-						<ErrorMessage error={errors[error.message] || 'Oops, ocurrio un error.'} onClick={this.closeError}/>
+						<ErrorMessage error={errors[error.message] || 'Ups, ocurrio un error.'} onClick={this.closeError}/>
 					</div>}
 				{showLocalLogin &&
 					<LoginForm loading={loading} onSubmit={this.onSubmit}/>}
