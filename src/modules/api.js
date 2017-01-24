@@ -2,7 +2,7 @@ const ApiConstructor = () => {
 	let baseURL
 
 	if (process.env.NODE_ENV === 'production')
-		baseURL = 'https://u34nae5h40.execute-api.us-east-1.amazonaws.com/dev/v1/auth'
+		baseURL = 'https://x3yifh7k34.execute-api.us-east-1.amazonaws.com/production/v1/auth'
 	else
 		baseURL = 'https://rnwkmfax27.execute-api.us-east-1.amazonaws.com/development/v1/auth'
 	if (process.env.REACT_APP_LOCAL_API)

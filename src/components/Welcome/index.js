@@ -12,12 +12,14 @@ class Welcome extends React.Component {
 
 		this.onChange = this.onChange.bind(this)
 		this.onSubmit = this.onSubmit.bind(this)
+		this.redirect = this.redirect.bind(this)
 
 		this.state = {
 			authorized: false,
 			error: false,
 			profile: {},
 			document: '',
+			submitting: false,
 		}
 	}
 
@@ -35,13 +37,15 @@ class Welcome extends React.Component {
 
 	onSubmit (e) {
 		e.preventDefault()
-		const {profile, document:doc} = this.state
+		const {document:doc} = this.state
+		this.setState({submitting: true})
 		if (doc === '') {
-			return location.href = profile.base_grant_url || 'http://www.tata.com.uy'
+			this.redirect()
+			return
 		}
 		Api.updateProfileDocument(this.state.document)
-			 .then(console.log)
-			 .catch(console.error)
+			 .then(this.redirect)
+			 .catch(this.redirect)
 	}
 
 	onChange (e) {
@@ -53,13 +57,22 @@ class Welcome extends React.Component {
 		})
 	}
 
+	redirect() {
+		try {
+			const {profile:{base_grant_url}} = this.props
+			return location.href = base_grant_url || 'http://www.tata.com.uy'
+		} catch (err) {
+			return location.href = 'http://www.tata.com.uy'
+		}
+	}
+
 	render() {
-		const {error, authorized, profile, document:doc} = this.state
+		const {error, authorized, profile, document:doc, submitting} = this.state
 		const {location: {query: {provider}}} = this.props
 		return (
 			<div className="Welcome">
 				{!error && !!authorized && <ProfileRow profile={profile} doc={doc} onChange={this.onChange} showInput={!profile.Document}/>}
-				{!error && !!authorized && <ContinueRow baseGrantUrl={profile.base_grant_url} onSubmit={this.onSubmit}/>}
+				{!error && !!authorized && <ContinueRow submitting={submitting} baseGrantUrl={profile.base_grant_url} onSubmit={this.onSubmit}/>}
 				{!error && !authorized && <AuthorizingRow provider={provider}/>}
 				{!!error && <ErrorRow />}
 			</div>
