@@ -59,12 +59,13 @@ class Welcome extends React.Component {
 
 	redirect() {
 		try {
-			const {profile:{base_grant_url}} = this.props
+			const {profile:{base_grant_url}} = this.state
 			return location.href = base_grant_url || 'http://www.tata.com.uy'
 		} catch (err) {
 			return location.href = 'http://www.tata.com.uy'
 		}
 	}
+
 
 	render() {
 		const {error, authorized, profile, document:doc, submitting} = this.state
