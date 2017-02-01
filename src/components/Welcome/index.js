@@ -27,7 +27,7 @@ class Welcome extends React.Component {
 		const sessionID = get(this.props, 'location.query.session_id')
 		if (sessionID)
 			document.cookie= 'sessionID = ' + sessionID
-		Api.getProfile()
+		Api.getProfile(sessionID)
 			.then(response => this.setState({
 				profile: response,
 				authorized: true,

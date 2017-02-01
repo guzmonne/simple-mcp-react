@@ -116,8 +116,8 @@ const ApiConstructor = () => {
 	 * @param  {String} options.profile Social auth provider.
 	 * @return {Proomise}               The fetch promise.
 	 */
-	const getProfile = () =>
-		fetchLambda(`${baseURL}/profile`)
+	const getProfile = (sessionID) =>
+		fetchLambda(`${baseURL}/profile?session_id=${sessionID}`)
 
 	const updateProfileDocument = (document) => (
 		fetchJSONLambda(`${baseURL}/profile/document`, {document}, {
