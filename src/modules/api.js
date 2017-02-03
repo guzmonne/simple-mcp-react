@@ -1,12 +1,18 @@
 const ApiConstructor = () => {
 	let baseURL
 
+	/** Production mode */
 	if (process.env.NODE_ENV === 'production')
 		baseURL = 'https://x3yifh7k34.execute-api.us-east-1.amazonaws.com/production/v1/auth'
+	/** Development mode */
 	else
 		baseURL = 'https://rnwkmfax27.execute-api.us-east-1.amazonaws.com/development/v1/auth'
+	/** Local mode */
 	if (process.env.REACT_APP_LOCAL_API)
 		baseURL = 'http://api.conapps.local.com:3001/v1/auth'
+	/** Staging mode */
+	if (process.env.REACT_APP_STAGING)
+		baseURL = 'https://be9p4nk3fe.execute-api.us-east-1.amazonaws.com/staging/v1/auth'
 	/**	
 	 * This was taken from Mozilla's Documentation.
 	 * Special error method to handle errors returning from Lambda
