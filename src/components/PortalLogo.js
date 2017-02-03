@@ -4,6 +4,7 @@ import wifiLogoDefault from '../_images/wifi-logo.png'
 import tataLogo from '../_images/tata-logo.png'
 import basLogo from '../_images/bas-logo.png'
 import mhogarLogo from '../_images/mhogar-logo.png'
+import conatelLogo from '../_images/conatel-logo.png'
 
 const PortalLogo = ({portal, className}) => {
 	let portalLogo, secondaryLogo, wifiLogo = wifiLogoDefault;
@@ -14,6 +15,10 @@ const PortalLogo = ({portal, className}) => {
 			break
 		case 'mhogar': 
 			portalLogo = mhogarLogo
+			break
+		case 'conatel':
+		wifiLogo = null
+			portalLogo = conatelLogo
 			break
 		default: 
 			portalLogo = tataLogo

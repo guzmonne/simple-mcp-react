@@ -72,7 +72,7 @@ class Welcome extends React.Component {
 		const {location: {query: {provider}}} = this.props
 		return (
 			<div className="Welcome">
-				{!error && !!authorized && <ProfileRow profile={profile} doc={doc} onChange={this.onChange} showInput={!profile.Document}/>}
+				{!error && !!authorized && <ProfileRow profile={profile} doc={doc} onChange={this.onChange} showInput={!profile.Document && profile.portal !== 'conatel'}/>}
 				{!error && !!authorized && <ContinueRow submitting={submitting} baseGrantUrl={profile.base_grant_url} onSubmit={this.onSubmit}/>}
 				{!error && !authorized && <AuthorizingRow provider={provider}/>}
 				{!!error && <ErrorRow />}

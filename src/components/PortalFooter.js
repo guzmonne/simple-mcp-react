@@ -9,6 +9,9 @@ const PortalFooter = ({portal,}) => {
 		case 'mhogar': 
 			domain = 'multiahorro'
 			break
+		case 'conatel':
+			domain = 'conatel'
+			break
 		default: 
 			domain = 'tata'
 	}
