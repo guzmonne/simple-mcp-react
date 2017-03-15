@@ -46,7 +46,8 @@ class LoginForm extends React.Component {
 			          Email
 			        </div>
 			        <div className="controls">
-			          <input 
+			          <input
+									autoFocus
 			          	name="email"
 			          	type="email"
 			          	value={email}
@@ -76,7 +77,7 @@ class LoginForm extends React.Component {
 			    </div>
 			    <div className="col-xs-12 col-sm-6 col-sm-offset-3">
 			    	{!loading && <button className="btn btn-dark-red btn-block" type="submit">
-			    		Iniciar Sesión
+			    		Aceptar
 		    		</button>}
 			    	{!!loading && <ButtonLoading />}
 			    </div>

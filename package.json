@@ -15,26 +15,23 @@
     "react-router": "^2.8.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=5000 REACT_APP_LOCAL_API=true react-scripts start",
+    "start:development": "PORT=5000 react-scripts start",
     "build": "react-scripts build",
+    "stage": "REACT_APP_STAGING=true react-scripts build && cp ./build/index.html ./build/200.html && cp ./build/index.html ./build/404.html && surge ./build auth.surge.mcp.conapps.click",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "buildAndDeploy:s3": "npm-run-all build deploy:s3:*",
-    "deploy:s3:static": "aws s3 cp ./build s3://jobic-uruman --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
-    "deploy:s3:index": "aws s3 cp ./build/index.html s3://jobic-uruman --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",
-    "deploy:s3": "npm-run-all deploy:s3:*",
-    "deploy:s3:jobic": "npm-run-all deploy:s3:jobic:*",
-    "deploy:s3:jobic:static": "aws s3 cp ./build s3://conatel-react-apps/simple-mcp-react-jobic --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
-    "deploy:s3:jobic:index": "aws s3 cp ./build/index.html s3://conatel-react-apps/simple-mcp-react-jobic/index.html --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",
-    "deploy:s3:uruman": "npm-run-all deploy:s3:uruman:*",
-    "deploy:s3:uruman:static": "aws s3 cp ./build s3://conatel-react-apps/simple-mcp-react-uruman --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
-    "deploy:s3:uruman:index": "aws s3 cp ./build/index.html s3://conatel-react-apps/simple-mcp-react-uruman/index.html --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",    
-    "deploy:s3:conatel": "npm-run-all deploy:s3:conatel:*",
-    "deploy:s3:conatel:static": "aws s3 cp ./build s3://conatel-react-apps/simple-mcp-react-conatel --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
-    "deploy:s3:conatel:index": "aws s3 cp ./build/index.html s3://conatel-react-apps/simple-mcp-react-conatel/index.html --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",
-    "deploy:s3:conference": "npm-run-all deploy:s3:jobic deploy:s3:conatel deploy:s3:uruman"
+    "deploy:s3:static": "aws s3 cp ./build s3://conatel-react-apps/simple-mcp-react --storage-class REDUCED_REDUNDANCY --recursive --exclude index.html --acl public-read --metadata-directive REPLACE --expires 2034-01-01T00:00:00Z --cache-control max-age=2592000,public --region sa-east-1 --profile serverless",
+    "deploy:s3:index": "aws s3 cp ./build/index.html s3://conatel-react-apps/simple-mcp-react/index.html --storage-class REDUCED_REDUNDANCY --acl public-read --metadata-directive REPLACE --expires 0 --cache-control no-cache,no-store,must-revalidate --region sa-east-1 --profile serverless",
+    "deploy:s3": "npm-run-all deploy:s3:*"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/config/eslint.js"
-  }
+  },
+  "description": "MCP authentication portals",
+  "main": "src/index.js",
+  "repository": "https://github.com/guzmonne/simple-mcp-react.git",
+  "author": "Guzman Monne <guzmonne@hotmail.com>",
+  "license": "MIT"
 }

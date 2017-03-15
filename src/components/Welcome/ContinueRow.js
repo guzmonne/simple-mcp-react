@@ -1,12 +1,14 @@
 import React, {PropTypes as T} from 'react'
+import ButtonLoading from '../ButtonLoading.js'
 
-const ContinueRow = ({onClick, portal}) => 
+const ContinueRow = ({baseGrantUrl, onSubmit, submitting}) => 
 	<div className="row Welcome_continue">
 		<div className="col-xs-12">
-			<a href="#" onClick={onClick}
-				className="btn btn-dark-red">
-			{portal === 'conatel' ? 'Finalizar inscripción' : 'Continuar hacia internet'}	
-			</a>
+		{submitting 
+		? <ButtonLoading />
+		: <a href="#" onClick={onSubmit} className="btn btn-dark-red">
+				Continuar hacia Internet
+			</a>}
 		</div>
 	</div>
 

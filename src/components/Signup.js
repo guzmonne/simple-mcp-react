@@ -28,7 +28,7 @@ class Signup extends React.Component {
 		this.setState({loading: true})
 		const query = get(this.props, 'location.query')
 		Api.signupUser(data, query)
-			.then(response => location.href = response)
+			.then(({href}) => location.href = href)
 			.catch(error => this.setState({
 				error: error,
 				loading: false,
@@ -44,7 +44,7 @@ class Signup extends React.Component {
 						<p>Ingrese sus datos:</p>
 						<div className="row">
 							<div className="col-xs-12">
-								{!!error && <ErrorMessage error={errors[error.message] || 'Oops, ocurrio un error.'} onClick={this.closeError}/>}
+								{!!error && <ErrorMessage error={errors[error.message] || 'Ups, ocurrio un error.'} onClick={this.closeError}/>}
 							</div>
 						</div>
 						<SignupForm loading={loading} onSubmit={this.onSubmit}/>

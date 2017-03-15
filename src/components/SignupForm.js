@@ -1,4 +1,5 @@
 import React, {PropTypes as T} from 'react'
+import {formatMoney} from '../modules/helpers.js'
 import ButtonLoading from './ButtonLoading.js'
 import ErrorMessage from './ErrorMessage.js'
 
@@ -6,6 +7,7 @@ class SignupForm extends React.Component {
 	constructor(props) {
 		super(props)
 		this.onChange = this.onChange.bind(this)
+		this.onDocumentChange = this.onDocumentChange.bind(this)
 		this.onSubmit = this.onSubmit.bind(this)
 		this.closeError = this.closeError.bind(this)
 		this.state = {
@@ -13,6 +15,7 @@ class SignupForm extends React.Component {
 				name: '',
 				email: '',
 				password: '',
+				document: '',
 				gender: undefined,
 				age: undefined,
 			},
@@ -20,9 +23,29 @@ class SignupForm extends React.Component {
 		}
 	}
 
-	onChange(key, event) {
+	onChange(key, isNumber) {
 		const {user} = this.state
-		this.setState({user: Object.assign({}, user, {[key]: event.target.value})})
+		return (event) => (
+			this.setState({
+				user: {
+					...user,
+					[key]: isNumber ? parseInt(event.target.value, 10) : event.target.value,
+				}
+			})
+		)
+	}
+
+	onDocumentChange(e) {
+		const {user} = this.state		
+		let doc = e.target.value.replace(/\D+/g, '')
+		if (doc.length > 7) return
+		if (window.isNaN(doc)) doc = ''
+		this.setState({
+			user: {
+				...user,
+				document: doc,
+			},
+		})
 	}
 
 	onSubmit(e) {
@@ -32,7 +55,8 @@ class SignupForm extends React.Component {
 			this.setState({error: 'Todos los campos son obligatorios.'})
 			return
 		}
-		this.props.onSubmit(user)
+		const result = Object.assign({}, user, {document: user.document.replace(/\D+/g, '')})
+		this.props.onSubmit(result)
 	}
 
 	closeError() {
@@ -40,8 +64,9 @@ class SignupForm extends React.Component {
 	}
 
 	render() {
-		const {error, user: {name, email, password, gender, age}} = this.state
+		const {error, user: {name, email, password, gender, age, document:doc}} = this.state
 		const {loading} = this.props
+
 		return (
 			<form className="Signup__Form" onSubmit={this.onSubmit}>
   			<div className="row clearfix">
@@ -54,7 +79,7 @@ class SignupForm extends React.Component {
   								name="name"
   								placeholder="Nombre"
   								value={name}
-  								onChange={this.onChange.bind(this, 'name')}
+  								onChange={this.onChange('name')}
   								className="form-control input-lg"
 								/>
   						</div>
@@ -69,7 +94,7 @@ class SignupForm extends React.Component {
   								name="email"
   								placeholder="Email"
   								value={email}
-  								onChange={this.onChange.bind(this, 'email')}
+  								onChange={this.onChange('email')}
   								className="form-control input-lg"
 								/>
   						</div>
@@ -84,9 +109,25 @@ class SignupForm extends React.Component {
   								name="password"
   								placeholder="Contraseña"
   								value={password}
-  								onChange={this.onChange.bind(this, 'password')}
+  								onChange={this.onChange('password')}
   								className="form-control input-lg"
 								/>
+  						</div>
+  					</div>
+					</div>
+
+					<div className="col-xs-12">
+  					<div className="form-group">
+  						<div className="controls">
+  							<input
+  								type="text"
+  								name="document"
+  								placeholder="Documento de identidad"
+									value={formatMoney(doc)}
+  								onChange={this.onDocumentChange}
+  								className="form-control input-lg"
+								/>
+								<p>Solo números, sin guion.</p>
   						</div>
   					</div>
 					</div>
@@ -98,7 +139,7 @@ class SignupForm extends React.Component {
 							    <input
 							    	type="radio"
 							    	checked={gender === 'male'}
-							    	onChange={this.onChange.bind(this, 'gender')}
+							    	onChange={this.onChange('gender')}
 							    	name="gender"
 							    	value="male"
 						    	/>
@@ -110,7 +151,7 @@ class SignupForm extends React.Component {
 							    <input
 							    	type="radio"
 							    	checked={gender === 'female'}
-							    	onChange={this.onChange.bind(this, 'gender')}
+							    	onChange={this.onChange('gender')}
 							    	name="gender"
 							    	value="female"
 						    	/>
@@ -128,7 +169,7 @@ class SignupForm extends React.Component {
   								name="age"
   								placeholder="Edad"
   								value={age}
-  								onChange={this.onChange.bind(this, 'age')}
+  								onChange={this.onChange('age')}
   								className="form-control input-lg"
 								>
 									<option >--Seleccione una opción--</option>

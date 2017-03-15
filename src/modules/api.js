@@ -1,16 +1,18 @@
 const ApiConstructor = () => {
-	let stage, apiGatewayId
-	if (process.env.NODE_ENV === 'production') {
-		stage = location.href.split('//')[1].split('.')[0]
-		apiGatewayId = '8o1tf1uevg'
-	} else {
-		stage = 'dev'
-		apiGatewayId = '074jfrmmw5'
-	}
-		
+	let baseURL
 
-	const baseURL = `https://${apiGatewayId}.execute-api.us-east-1.amazonaws.com/${stage}/authentication`
-
+	/** Production mode */
+	if (process.env.NODE_ENV === 'production')
+		baseURL = 'https://x3yifh7k34.execute-api.us-east-1.amazonaws.com/production/v1/auth'
+	/** Development mode */
+	else
+		baseURL = 'https://rnwkmfax27.execute-api.us-east-1.amazonaws.com/development/v1/auth'
+	/** Local mode */
+	if (process.env.REACT_APP_LOCAL_API)
+		baseURL = 'http://api.conapps.local.com:3001/v1/auth'
+	/** Staging mode */
+	if (process.env.REACT_APP_STAGING)
+		baseURL = 'https://be9p4nk3fe.execute-api.us-east-1.amazonaws.com/staging/v1/auth'
 	/**	
 	 * This was taken from Mozilla's Documentation.
 	 * Special error method to handle errors returning from Lambda
@@ -38,7 +40,7 @@ const ApiConstructor = () => {
 	 * @return {Object|LambdaError} The response object or an Error
 	 */
 	const checkError = (response) => {
-		if (!!response.errorMessage) 
+		if (!!response.errorMessage || !!response.error) 
 			throw new LambdaError(response)
 		else
 			return response
@@ -57,7 +59,7 @@ const ApiConstructor = () => {
 	 * @return {Promise}        The fetch promise.
 	 */
 	const fetchLambda = (url, options) =>
-		fetch(url, options)
+		fetch(url, Object.assign({}, options, {credentials: 'include'}))
 			.then(parseJSON)
 			.then(checkError)
 	/**
@@ -77,6 +79,7 @@ const ApiConstructor = () => {
 		    'Content-Type': 'application/json'
 		  },
 			body: JSON.stringify(body),
+			credentials: 'include',
 		})
 	/**
 	 * Convert a camelized string into a lowercased one with a custom separator
@@ -119,8 +122,14 @@ const ApiConstructor = () => {
 	 * @param  {String} options.profile Social auth provider.
 	 * @return {Proomise}               The fetch promise.
 	 */
-	const getProfile = ({token, provider}) =>
-		fetchLambda(`${baseURL}/profile/${token}?provider=${provider}`)
+	const getProfile = (sessionID) =>
+		fetchLambda(`${baseURL}/profile?session_id=${sessionID}`)
+
+	const updateProfileDocument = (document) => (
+		fetchJSONLambda(`${baseURL}/profile/document`, {document}, {
+			method: 'PUT',
+		})
+	)
 	/**
 	 * Updates the user profile.
 	 * @param  {Object} data           Keys and values to update the 
@@ -152,7 +161,7 @@ const ApiConstructor = () => {
 	 * @return {Void}
 	 */
 	const socialLogin = (provider, query) =>
-		location.href = urlBuilder(`${baseURL}/signin/${provider}`, query)
+		location.href = urlBuilder(`${baseURL}/${provider}`, query)
 
 	//////////////////
 	
@@ -166,6 +175,7 @@ const ApiConstructor = () => {
 		LambdaError,
 		urlBuilder,
 		socialLogin,
+		updateProfileDocument,
 	})
 }
 

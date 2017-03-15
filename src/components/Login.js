@@ -14,9 +14,11 @@ class Login extends React.Component {
 		this.onSubmit = this.onSubmit.bind(this)
 		this.closeError = this.closeError.bind(this)
 		this.onSocialLogin = this.onSocialLogin.bind(this)
+		this.toggleLocalLogin = this.toggleLocalLogin.bind(this)
 		this.state = {
 			error: false,
 			loading: false,
+			showLocalLogin: false,
 		}
 	}
 
@@ -29,7 +31,7 @@ class Login extends React.Component {
 		this.setState({loading: true})
 		const query = get(this.props, 'location.query')
 		Api.loginUser(values, query)
-			.then(response => location.href = response)
+			.then(({href}) => location.href = href)
 			.catch(error => this.setState({
 				loading: false,
 				error: error,
@@ -40,24 +42,38 @@ class Login extends React.Component {
 		this.setState({error: undefined})
 	}
 
+	toggleLocalLogin(e) {
+		e.preventDefault()
+		this.setState(state => ({
+			showLocalLogin: !state.showLocalLogin,
+		}))
+	}
+
 	render() {
-		const {loading, error} = this.state
+		const {loading, error, showLocalLogin} = this.state
 		return (
 			<div className="Login text-center">
 				<div className="row Login__social">
-					<div className="col-xs-12">
-						<p>Inicie su sesión con su red social favorita.</p>
-						<SocialButtons onClick={this.onSocialLogin}/>
-					</div>
+					<p>Inicie su sesión con su red social favorita.</p>
+					<SocialButtons onClick={this.onSocialLogin}/>
 				</div>
 				<div className="row Login__form">
+				<p>... o ingrese sus datos:</p>
+				{!!error && 
+					<div className="row col-xs-12">
+						<ErrorMessage error={errors[error.message] || 'Ups, ocurrio un error.'} onClick={this.closeError}/>
+					</div>}
+				{showLocalLogin &&
+					<LoginForm loading={loading} onSubmit={this.onSubmit}/>}
 					<div className="col-xs-12">
-						<p>... o ingrese sus datos:</p>
-						<div className="row col-xs-12">
-							{!!error && <ErrorMessage error={errors[error.message] || 'Oops, ocurrio un error.'} onClick={this.closeError}/>}
-						</div>
-						<LoginForm loading={loading} onSubmit={this.onSubmit}/>
-			    	{!loading && <Link to={{
+					{!showLocalLogin &&
+						<button className="btn btn-dark-red btn-block"
+										type="button"
+										onClick={this.toggleLocalLogin}>
+			    		Iniciar Sesión
+		    		</button>}
+					{!loading && 
+						<Link to={{
 			    		pathname: '/signup',
 			    		query: get(this.props, 'location.query'),
 			    	}} className="btn btn-block btn-link">

@@ -5,8 +5,46 @@ import PortalLogo from './PortalLogo.js'
 import PortalFooter from './PortalFooter.js'
 
 class MainLayout extends React.Component {
+	constructor() {
+		super()
+		this.getPortal = this.getPortal.bind(this)
+		this.getPortalFromUrl = this.getPortalFromUrl.bind(this)
+		this.getPortalFromCookie = this.getPortalFromCookie.bind(this)
+		this.state = {
+			portal: ''
+		}
+	}
+
+	componentDidMount() {
+		this.getPortal()
+	}
+
+	getPortal() {
+		return this.getPortalFromUrl() ? true : this.getPortalFromCookie()
+	}
+
+	setPortal(portal) {
+		document.cookie = 'portal=' + portal 
+		this.setState({portal})
+	}
+
+	getPortalFrom(fn) {
+		const portal = fn()
+		if (portal)
+			this.setPortal(portal)
+		return portal
+	} 
+
+	getPortalFromUrl() {
+		return this.getPortalFrom(() => get(this.props, 'location.query.portal'))
+	}
+
+	getPortalFromCookie(){
+		return this.getPortalFrom(() => document.cookie.match(/portal=(.*?)(;|$)/)[1])
+	}
+
 	render() {
-		const portal = get(this.props, 'location.query.portal', 'tata')
+		const {portal} = this.state
 		return (
 			<div className={cn('MainLayout', portal)}>
 				<div className="MainLayout__container">
